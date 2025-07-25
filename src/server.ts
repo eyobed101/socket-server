@@ -3,7 +3,7 @@ import { Server } from "socket.io";
 import { initializeSocket } from "./socket";
 
 const httpServer = createServer();
-const PORT = process.env.PORT || 3001;
+const PORT = parseInt(process.env.PORT || "3001", 10);
 
 const io = new Server(httpServer, {
   cors: {
@@ -35,7 +35,7 @@ httpServer.on("request", (req, res) => {
 
 initializeSocket(io);
 
-httpServer.listen(PORT, '0.0.0.0',() => {
+httpServer.listen(PORT, '0.0.0.0', () => {
   console.log(`Socket.IO server running on port ${PORT}`);
 });
 
